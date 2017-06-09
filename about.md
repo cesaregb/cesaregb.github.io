@@ -4,52 +4,41 @@ title: About
 permalink: /about/
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam imperdiet urna eu dolor placerat varius. Vivamus eros augue, consequat id scelerisque nec, fringilla in est. Proin pellentesque malesuada mauris, quis aliquam augue vestibulum ac. Vestibulum ut feugiat nibh. Sed faucibus felis purus, sed convallis leo dictum vehicula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam imperdiet urna eu dolor placerat varius. Vivamus eros augue, consequat id scelerisque nec, fringilla in est. Proin pellentesque malesuada mauris, quis aliquam augue vestibulum ac. Vestibulum ut feugiat nibh. Sed faucibus felis purus, sed convallis leo dictum vehicula.  
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam imperdiet urna eu dolor placerat varius. Vivamus eros augue, consequat id scelerisque nec, fringilla in est. Proin pellentesque malesuada mauris, quis aliquam augue vestibulum ac. Vestibulum ut feugiat nibh. Sed faucibus felis purus, sed convallis leo dictum vehicula. 
+I'm a Software Developer living in Jalisco Mexico,  with vast experience in computer science and object-oriented design and analysis. As well my work history has provided me a variety of skills which allow me to relate and understand different levels and roles of a software development team.
+I consider myself to be a results-oriented, dependable, and capable worker; who is not easily affected by job stress and will be a strong asset to your department and organization in a variety of duties. I am a fast learner in any on the job training situation.
 
-Sed faucibus felis purus, sed convallis leo dictum vehicula.
+### Education
 
-## Education
+Instituto Tecnologico de Zacatecas - Bachelor CS. Software engineer, Distributed systems. (2003 - 2007)
 
-* ABC degree from XYZ University.
-* ABC degree from XYZ University.
-* ABC degree from XYZ University.
+### Certifications
 
-## Roles
+* Oracle Certified Professional, Java SE 6 Programmer
+(Oracle License SUN663677 October 2010)
+* Oracle Certified Professional, Java EE 5 Web Component Developer
+(Oracle License SUN663677 November 2010)
 
-Founder, ABC Organisation
+### Languages
 
-## Skills
+* Spanish ​ (Native)
+* English ​ (Professional proficiency)
 
-* **Skill 1** - `Skill` / `Skill` / `Skill` / `Skill`
-* **Skill 2** - `Skill` / `Skill` / `Skill` / `Skill` / `Skill` / `Skill` / `Skill`
-* **Skill 3** - `Skill` / `Skill` / `Skill`
-* **Skill 4** - `Skill` / `Skill` / `Skill` 
-* **Skill 5** - `Skill`
-* **Skill 6** - `Skill` / `Skill` 
-    
-    
-## Achievements
+### Side Projects
 
+* EasyClick - Design and Develop an Android application
+* Process System - Tech stack for a ​Laundry Business​.
 
-* [**This is my first achievement**](#) 
-   
-   Proin pellentesque malesuada mauris, quis aliquam augue vestibulum ac. Vestibulum ut feugiat nibh. Sed faucibus felis purus, sed convallis leo dictum vehicula.
+### Skills:
+* Deep knowledge of computer science concepts
+* System Design and Architecture
+* Application performance and scalability
 
-***
-
-* [**This is my second achievement**](#) 
-
-    Proin pellentesque malesuada mauris, quis aliquam augue vestibulum ac. Vestibulum ut feugiat nibh. Sed faucibus felis purus, sed convallis leo dictum vehicula.
-
-***
-
-* [**This is my third achievement**](#) 
-
-   Proin pellentesque malesuada mauris, quis aliquam augue vestibulum ac. Vestibulum ut feugiat nibh. Sed faucibus felis purus, sed convallis leo dictum vehicula
-
+(Java, Javascript, Node.js, SQL, Non-SQL, UI, Android, Python)
 
 ## Contact me
 
-[agarwal.akshay.akshay8@gmail.com](mailto:agarwal.akshay.akshay8@gmail.com)
+* [cesareg.borjon@gmail.com](mailto:cesareg.borjon@gmail.com)
+* linkedin.com/in/cesaregb/
+* github.com/cesaregb/
+* (+52) 1 333 576 8653
