@@ -4,6 +4,8 @@ title: OOA, OOD, OOP Concepts (Español)
 author: Cesar Gonzalez.
 ---
 
+Descripcion de que significan los conceptos de OOA, OOD y  OOP para mi.
+
 ## OOA, OOD, OOP Concepts 
 
 Soy buen desarrollador, y pongo en mi CV, _experto in OOA, OOD and OOP_ porque es lo &quot;in&quot; (o era).

@@ -4,37 +4,28 @@ title: Reactive Programing en Java rxJava (Español)
 author: Cesar Gonzalez
 ---
 
+Como utilizar rxJava. 
+
 # Reactive Programing en Java (Español) RxJava
 
-Esta parte esta basada casi completamente en una excelente guia que esta en:
-
-[https://github.com/Froussios/Intro-To-RxJava](https://github.com/Froussios/Intro-To-RxJava)
+Esta parte esta basada casi completamente en una excelente guia que esta en: [https://github.com/Froussios/Intro-To-RxJava](https://github.com/Froussios/Intro-To-RxJava)
 
 Probablemente sea mucho mas entendible esta guia que lo que yo escribo.
 
-[Rx Java](https://github.com/ReactiveX/RxJava) y/o [RxJava 2
-](http://reactivex.io/RxJava/2.x/javadoc/)([Que
-cambio](https://github.com/ReactiveX/RxJava/wiki/What's-different-in-2.0))
+[Rx Java](https://github.com/ReactiveX/RxJava) y/o [RxJava 2](http://reactivex.io/RxJava/2.x/javadoc/) [Que cambio](https://github.com/ReactiveX/RxJava/wiki/What's-different-in-2.0)
 
-Rx esta basado sobre
-[Observable](http://reactivex.io/RxJava/2.x/javadoc/io/reactivex/Observable.html)
-representa el recurso o “hotspot” de que se brindan los recursos.
+Rx esta basado sobre [Observable](http://reactivex.io/RxJava/2.x/javadoc/io/reactivex/Observable.html) representa el recurso o “hotspot” de que se brindan los recursos.
+La utilización de [Observer](http://reactivex.io/RxJava/2.x/javadoc/io/reactivex/Observer.html) Es la herramienta utilizada para consumir el observable.
 
-La utilización de
-[Observer](http://reactivex.io/RxJava/2.x/javadoc/io/reactivex/Observer.html) Es
-la herramienta utilizada para consumir el observable.
-
-**Nota***: A lo largo de esta guia me refiero a “Observable”, en todo momento
-este puede ser cambiado por la implementación que soporta backpressure de RxJava
-*[Flowable](http://reactivex.io/RxJava/2.x/javadoc/io/reactivex/Flowable.html)*.
-Al final del post, hago mención del porque uno vs el otro.*
+**Nota***: A lo largo de esta guia me refiero a “Observable”, en todo momento este puede ser cambiado por la implementación que soporta backpressure de RxJava
+*[Flowable](http://reactivex.io/RxJava/2.x/javadoc/io/reactivex/Flowable.html)*. Al final del post, hago mención del porque uno vs el otro.*
 
 Siguiendo la implementación de observer design pattern:
 
 * Observer subscribe a Observable.
 * Observer reacciona a las acciones emitidas por el Observable.
 
-**Observable (El Flowable que mencione en la nota)**
+### Observable (El Flowable que mencione en la nota)
 
 El Observable emite 3 tipos de eventos.
 
@@ -42,8 +33,7 @@ El Observable emite 3 tipos de eventos.
 * finalización .onComplete( )
 * error .onError( )
 
-El observable emite, las llamadas mencionadas, para esto la interfaz Observer,
-esta listo para recibir estas con la interfaz:
+El observable emite, las llamadas mencionadas, para esto la interfaz Observer, esta listo para recibir estas con la interfaz:
 
     interface Observer<T> {
       void onCompleted();
@@ -62,7 +52,7 @@ La interacción normal con RP seria:
 
 Donde myOnNext, myError, myComplete serian partes del Observer.
 
-Como crear un Observable:
+### Como crear un Observable:
 
 * Observable.create();
 * Observable.just(Object);
@@ -70,7 +60,7 @@ Como crear un Observable:
 * Observable.fromIterable();
 * Observable.fromCallable();
 * Observable.fromPublisher();
-
+```
     Observable<JsonElement> todoObservable = Observable.create(emitter -> {
        try {
          for (String type : types){
@@ -85,11 +75,11 @@ Como crear un Observable:
          emitter.onError(e);
        }
     });
+```
 
-**Observer o listener**
+### Observer o listener
 
-Hay varias implementaciones de Observer, dependiendo de que se busque hacer,
-pero lo mas común es:
+Hay varias implementaciones de Observer, dependiendo de que se busque hacer, pero lo mas común es:
 
     DisposableObserver<String> s = values
     .onErrorResumeNext(Observable.just("hard"))
@@ -108,20 +98,17 @@ pero lo mas común es:
        }
     });
 
-Un observer tiene la limitación de que no puedes “propagar” el resultado, como
-yo lo entiendo es un punto Finito, si vas a post-processar el resultado seria
-llamando otra función o algo así, esto puede no ser muy funcional.
+Un observer tiene la limitación de que no puedes “propagar” el resultado, como yo lo entiendo es un punto Finito, si vas a post-processar el resultado seria llamando otra función o algo así, esto puede no ser muy funcional.
 
-**Subjects**
+### Subjects
 
-Hay una Extension de Observer que Implementa Observable, esta es el
-[Subject](http://reactivex.io/RxJava/2.x/javadoc/io/reactivex/subjects/Subject.html).
+Hay una Extension de Observer que Implementa Observable, esta es el [Subject](http://reactivex.io/RxJava/2.x/javadoc/io/reactivex/subjects/Subject.html).
 
-Normalmente es utilizado como entry-point en un pipeline de observables. Aqui se
-ve como funciona como Observable.
+Normalmente es utilizado como entry-point en un pipeline de observables. Aqui se ve como funciona como Observable.
 
-Proxy porque siendo un Observer, puede subscribirse a uno o mas Observables, y
-siendo un Observable, puede propagar eventos.
+Proxy porque siendo un Observer, puede subscribirse a uno o mas Observables, y siendo un Observable, puede propagar eventos.
+![img1](/images/reactiveJava/img1.png)
+
 
 Como se utiliza un Subject:
 
@@ -147,18 +134,15 @@ ReplaySubject : Repite eventos emitidos.
 
 BehavioralSubject: etc.
 
-**Subject vs Observable.**
+### Subject vs Observable.
 
-Normalmente como ya se menciono subject es mas orientado a un entrypoint. Cuando
-ocupas varias fuentes o algo que funja como ambos, pero normalmente puedes
-trabajar con cualquiera de los 2.
+Normalmente como ya se menciono subject es mas orientado a un entrypoint. Cuando ocupas varias fuentes o algo que funja como ambos, pero normalmente puedes trabajar con cualquiera de los 2.
 
-**Subscribe and Unsubscribe**
+### Subscribe and Unsubscribe
 
 Esta sucede cuando te “un-suscribes” Yep justo como el spam.
 
-El punto de inicio del Observable es el subscribe el cual tiene diferentes
-“firmas”
+El punto de inicio del Observable es el subscribe el cual tiene diferentes “firmas”
 
     Subscription subscribe()
     Subscription  subscribe(Action1<? super T> onNext)
@@ -176,13 +160,11 @@ Ejemplo de subscripción a un Observer (o subject):
     s.onNext(0);
     s.onError(new Exception("Oops"));
 
-Aqui no se tiene declarado un Observable como tal, pero las funciones inyectadas
-actúan como tal.
+Aqui no se tiene declarado un Observable como tal, pero las funciones inyectadas actúan como tal.
 
 Cuando ya no quieres escuchar a _______, como lo callo?
 
-Como Observer, puedes dejar de recibir los emits del Observable, con
-unsubscribe, sobre la subscripción.
+Como Observer, puedes dejar de recibir los emits del Observable, con unsubscribe, sobre la subscripción.
 
     Subject<Integer, Integer> values = ReplaySubject.create();
     Subscription subscription = values.subscribe(
@@ -195,18 +177,12 @@ unsubscribe, sobre la subscripción.
     subscription.unsubscribe(); 
     values.onNext(2);
 
-Cuando ya se tiene el stream de datos, que es lo que se requiere hacer con el, o
-como vamos a “Reaccionar” con los datos es lo importante, para esto RxJava
-ofrece diferentes metodos.
+Cuando ya se tiene el stream de datos, que es lo que se requiere hacer con el, o como vamos a “Reaccionar” con los datos es lo importante, para esto RxJava ofrece diferentes metodos.
 
-Los mas comunes son Reducers y Aggregators, ósea lo que Javascript presume, ojo,
-esto se puede hacer con los [lambdas de Java
-8.](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html)
+Los mas comunes son Reducers y Aggregators, ósea lo que Javascript presume, ojo, esto se puede hacer con los [lambdas de Java 8](https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html).
+### Reducers
 
-**Reducers**
-
-Para toda función de streams, parte importante de esto son los reducers. para
-esto funcionan muy similar a como **streams** en java8
+Para toda función de streams, parte importante de esto son los reducers. para esto funcionan muy similar a como **streams** en java8
 
 Existen varios tipos de reducers:
 
@@ -230,60 +206,57 @@ Un ejemplo de la utilización es:
         () -> System.out.println("Completed")
       );
 
-**Aggregation**
+### Aggregation
 
-Hay diferentes metodos para agregar datos de un stream ie: count, first, last,
-single…
+Hay diferentes metodos para agregar datos de un stream ie: count, first, last, single…
 
 Un ejemplo común de una operación de agregación es reduce:
 
-Yo diría que como independientemente como quieras tus datos ya existe una
-implementación sobre el stream que te arrojara ese resultado.
+![img2](/images/reactiveJava/img2.png)
 
-Algunos otros comunes que me gustaría mencionar son orientados a agrupación de
-datos en “sub-grupos”, puedes llegar a esto con: *toList, toSortedList, toMap,
-toMultimap, groupBy.*
+Yo diría que como independientemente como quieras tus datos ya existe una implementación sobre el stream que te arrojara ese resultado.
 
-Ahora ya agrupe los datos pero me gustaría modificarlo, RxJava tiene los
-transformers, creo este diagrama lo explica mejor e lo que yo podría.
+Algunos otros comunes que me gustaría mencionar son orientados a agrupación de datos en “sub-grupos”, puedes llegar a esto con: *toList, toSortedList, toMap, toMultimap, groupBy.*
 
-Como mensione en mi post anterior, el manejo de **errores** en RP, es
-importante, rxJava da la fasilidad de como reaccionar a un error, ofreciendo los
-metodos:
+Ahora ya agrupe los datos pero me gustaría modificarlo, RxJava tiene los transformers, creo este diagrama lo explica mejor e lo que yo podría.
+
+![img3](/images/reactiveJava/img3.png)
+
+Como mensione en mi post anterior, el manejo de **errores** en RP, es importante, rxJava da la fasilidad de como reaccionar a un error, ofreciendo los metodos:
 
     .onErrorReturn( )
     .onErrorResumeNext || .onExceptionResumeNext()
     .retry( )
+    
+![img4](/images/reactiveJava/img4.png)
 
-Streams concurrentes, ahora hay diferentes maneras de reaccionar a eventos que
-pasan en 2+ streams.
 
-Entre ellas esta amb, next, switch, etc. un ejemplo de como se utilizaria en
-codigo seria:
+Streams concurrentes, ahora hay diferentes maneras de reaccionar a eventos que pasan en 2+ streams.
+
+Entre ellas esta amb, next, switch, etc. un ejemplo de como se utilizaria en codigo seria:
 
     Observable.ambArray(
         Observable.timer(100, TimeUnit.MILLISECONDS).map(i->"a...."),
         Observable.timer(50, TimeUnit.MILLISECONDS).map(i->"b...."))
         .subscribe(System.out::println);
 
-**Backpressure**
+![img5](/images/reactiveJava/img5.png)
 
-Por ultimo me gustaria mensiona el termino backpressure. El termino viene de la
-presion que existe de un fluido que ejerce para pasar sobre un conducto que no
-tiene la capasidad.
+### Backpressure
+
+Por ultimo me gustaria mensiona el termino backpressure. El termino viene de la presion que existe de un fluido que ejerce para pasar sobre un conducto que no tiene la capasidad.
 
 Cuando el productor y consumidor trabajan con “tiempos” diferentes.
 
-Con sync programing esto no pasa, ya que es blocking y hasta que no termina A, B
-puede empezar.
+Con sync programing esto no pasa, ya que es blocking y hasta que no termina A, B puede empezar.
 
 Un posible remedio seria reducir el input:
 
-Puedes utilizar window y buffer para almacenar información mientras puedes
-consultarla.
+![img6](/images/reactiveJava/img6.png)
 
-Pero El Observable tiene la capacidad de permitirle al Observer indicar cuanta
-información espera, asi regulando el consumo.
+Puedes utilizar window y buffer para almacenar información mientras puedes consultarla.
+
+Pero El Observable tiene la capacidad de permitirle al Observer indicar cuanta información espera, asi regulando el consumo.
 
 Observable cuando
 
@@ -291,17 +264,15 @@ Observer en onStart( ) mandame de uno nada mas
 
 Obervable oks, regulare mi .onNext( )
 
-Si no perder información es importante, se puede configurar el observer a no
-perder información
+Si no perder información es importante, se puede configurar el observer a no perder información
 
 Pero, **RxJava 2** le da una mejor solución a backpressure
 
-**Observable and Flowable**
+### Observable and Flowable
 
 Son lo mismo pero orientado a diferentes cargas.
 
-La principal diferencia sobre usar una vs el otro, es la cantidad de datos que
-recibirás siendo **10000** el parteaguas.
+La principal diferencia sobre usar una vs el otro, es la cantidad de datos que recibirás siendo **10000** el parteaguas.
 
     Tienes < 10,000 elementos.
     UI Elements

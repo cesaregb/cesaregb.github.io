@@ -4,7 +4,6 @@ title: About
 permalink: /about/
 ---
 
-
 I'm a Software Developer living in Jalisco Mexico,  with vast experience in computer science and object-oriented design and analysis. As well my work history has provided me a variety of skills which allow me to relate and understand different levels and roles of a software development team.
 I consider myself to be a results-oriented, dependable, and capable worker; who is not easily affected by job stress and will be a strong asset to your department and organization in a variety of duties. I am a fast learner in any on the job training situation.
 
